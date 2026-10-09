@@ -1,13 +1,13 @@
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import { Stack, useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import { ScrollView, StyleSheet, View } from "react-native";
 
+import { getFeature } from "@/assets/demo-data/features";
 import { AppText } from "@/components/ui/AppText";
-import { Screen } from "@/components/ui/Screen";
 import { ListGroup, ListRow } from "@/components/ui/ListGroup";
+import { Screen } from "@/components/ui/Screen";
 import { Spacing } from "@/constants/Layout";
 import { useAppTheme } from "@/context/ThemeContext";
-import { getFeature } from "@/assets/demo-data/features";
 
 /**
  * Generic secondary page for settings rows, Strategy actions and Shortcuts.
@@ -21,7 +21,6 @@ export default function FeatureScreen() {
   if (!feature) {
     return (
       <View style={[styles.missing, { backgroundColor: colors.background }]}>
-        <Stack.Screen options={{ title: "Not Found" }} />
         <AppText variant="bodyLarge" muted>
           This page does not exist.
         </AppText>
@@ -38,8 +37,6 @@ export default function FeatureScreen() {
         style={{ backgroundColor: colors.background }}
         contentContainerStyle={styles.content}
       >
-        <Stack.Screen options={{ title: feature.title }} />
-
         <View style={styles.hero}>
           <View
             style={[styles.iconCircle, { backgroundColor: colors.elevated }]}

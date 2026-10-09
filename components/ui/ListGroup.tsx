@@ -1,6 +1,6 @@
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Children, Fragment, isValidElement, type ReactNode } from "react";
-import { Pressable, StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, View, type PressableProps } from "react-native";
 
 import { AppText } from "@/components/ui/AppText";
 import { Radius, Spacing } from "@/constants/Layout";
@@ -41,10 +41,13 @@ export function ListGroup({ children, inset = true }: ListGroupProps) {
   );
 }
 
-interface ListRowProps {
+/**
+ * Extra Pressable props (`onPress`, `href`, `role`...) are passed through so
+ * the row can sit inside `<Link asChild>`, which supplies them.
+ */
+interface ListRowProps extends Omit<PressableProps, "style" | "children"> {
   label: string;
   icon: IconName;
-  onPress?: () => void;
   /** `chevron` for in-app pages, `external` for links that leave the app. */
   accessory?: "chevron" | "external" | "none";
   /** Custom element on the right (e.g. a Switch); replaces the accessory. */
@@ -57,6 +60,7 @@ export function ListRow({
   onPress,
   accessory = "chevron",
   trailing,
+  ...rest
 }: ListRowProps) {
   const { colors } = useAppTheme();
   const accessoryIcon: IconName | null =
@@ -96,8 +100,9 @@ export function ListRow({
 
   return (
     <Pressable
-      onPress={onPress}
       accessibilityRole="button"
+      {...rest}
+      onPress={onPress}
       style={({ pressed }) => [
         styles.row,
         pressed && { backgroundColor: colors.elevated },

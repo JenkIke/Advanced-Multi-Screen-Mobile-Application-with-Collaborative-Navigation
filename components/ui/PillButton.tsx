@@ -2,6 +2,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import {
   Pressable,
   StyleSheet,
+  type PressableProps,
   type StyleProp,
   type ViewStyle,
 } from "react-native";
@@ -11,10 +12,12 @@ import { Radius, Spacing } from "@/constants/Layout";
 import { useAppTheme } from "@/context/ThemeContext";
 import type { IconName } from "@/types";
 
-interface PillButtonProps {
+/**
+ * Extra Pressable props (`onPress`, `href`, `role`...) are passed through so
+ * the button can sit inside `<Link asChild>`, which supplies them.
+ */
+interface PillButtonProps extends Omit<PressableProps, "style" | "children"> {
   label: string;
-  /** Optional so the button can sit inside `<Link asChild>`, which supplies it. */
-  onPress?: () => void;
   icon?: IconName;
   /** `primary` is the high-contrast white pill (sign in); `secondary` is the grey chip. */
   variant?: "primary" | "secondary";
@@ -23,10 +26,10 @@ interface PillButtonProps {
 
 export function PillButton({
   label,
-  onPress,
   icon,
   variant = "secondary",
   style,
+  ...rest
 }: PillButtonProps) {
   const { colors } = useAppTheme();
   const isPrimary = variant === "primary";
@@ -34,8 +37,8 @@ export function PillButton({
 
   return (
     <Pressable
-      onPress={onPress}
       accessibilityRole="button"
+      {...rest}
       style={({ pressed }) => [
         styles.pill,
         { backgroundColor: isPrimary ? colors.inverse : colors.elevated },

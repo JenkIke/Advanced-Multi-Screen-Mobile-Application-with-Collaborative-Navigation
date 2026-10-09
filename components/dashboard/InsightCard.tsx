@@ -1,5 +1,6 @@
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import { StyleSheet, View, type StyleProp, type ViewStyle } from "react-native";
+import { type ComponentProps } from "react";
+import { StyleSheet, View } from "react-native";
 
 import { Sparkline } from "@/components/charts/Sparkline";
 import { AppText } from "@/components/ui/AppText";
@@ -9,22 +10,26 @@ import { Spacing } from "@/constants/Layout";
 import { useAppTheme } from "@/context/ThemeContext";
 import type { Insight } from "@/types";
 
-interface InsightCardProps {
+/**
+ * Remaining Card props (`onPress`, `href`, `role`...) are passed through so
+ * the card can sit inside `<Link asChild>`, which supplies them.
+ */
+interface InsightCardProps extends Omit<
+  ComponentProps<typeof Card>,
+  "children"
+> {
   insight: Insight;
-  /** Optional so the card can sit inside `<Link asChild>`, which supplies it. */
-  onPress?: () => void;
-  style?: StyleProp<ViewStyle>;
 }
 
 /** Tile in the "Insights & Analytics" grid: title, mini chart, headline value. */
-export function InsightCard({ insight, onPress, style }: InsightCardProps) {
+export function InsightCard({ insight, style, ...rest }: InsightCardProps) {
   const { colors } = useAppTheme();
 
   return (
     <Card
-      onPress={onPress}
-      style={[styles.card, style]}
       accessibilityLabel={`${insight.title} insight`}
+      {...rest}
+      style={[styles.card, style]}
     >
       <AppText
         variant="title"

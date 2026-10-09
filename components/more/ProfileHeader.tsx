@@ -1,13 +1,19 @@
-import { Pressable, StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, View, type PressableProps } from "react-native";
 
 import { AppText } from "@/components/ui/AppText";
 import { Spacing } from "@/constants/Layout";
 import { useAppTheme } from "@/context/ThemeContext";
 
-interface ProfileHeaderProps {
+/**
+ * Extra Pressable props (`onPress`, `href`, `role`...) are passed through so
+ * the header can sit inside `<Link asChild>`, which supplies them.
+ */
+interface ProfileHeaderProps extends Omit<
+  PressableProps,
+  "style" | "children"
+> {
   name: string;
   subtitle: string;
-  onPress?: () => void;
 }
 
 /** First two letters of the name, e.g. "Isaac" -> "IS", as MacroFactor does. */
@@ -23,15 +29,21 @@ function initialsFor(name: string): string {
  * Avatar + name block on the More tab and Account screen.
  * IMAGE PLACEHOLDER: a user-uploaded profile photo would replace the initials.
  */
-export function ProfileHeader({ name, subtitle, onPress }: ProfileHeaderProps) {
+export function ProfileHeader({
+  name,
+  subtitle,
+  onPress,
+  ...rest
+}: ProfileHeaderProps) {
   const { colors } = useAppTheme();
 
   return (
     <Pressable
-      onPress={onPress}
-      disabled={!onPress}
       accessibilityRole={onPress ? "button" : undefined}
       accessibilityLabel={`${name}, view account`}
+      {...rest}
+      onPress={onPress}
+      disabled={!onPress}
       style={({ pressed }) => [styles.row, pressed && styles.pressed]}
     >
       <View style={[styles.avatar, { backgroundColor: colors.inverse }]}>

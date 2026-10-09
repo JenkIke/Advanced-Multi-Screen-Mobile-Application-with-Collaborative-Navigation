@@ -9,6 +9,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, useWindowDimensions, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
+import { getFeature } from "@/assets/demo-data/features";
 import { AuthProvider, useAuth } from "@/context/AuthContext";
 import { FoodLogProvider } from "@/context/FoodLogContext";
 import { ThemeProvider, useAppTheme } from "@/context/ThemeContext";
@@ -96,7 +97,14 @@ function RootNavigator() {
                 name="insights/[metric]"
                 options={{ title: "Insight" }}
               />
-              <Stack.Screen name="feature/[slug]" options={{ title: "" }} />
+              <Stack.Screen
+                name="feature/[slug]"
+                // Resolve the title from the route param here, not inside the
+                // screen, so the header shows it on the first frame.
+                options={({ route }) => ({
+                  title: featureTitle(route.params),
+                })}
+              />
               <Stack.Screen name="account" options={{ title: "Account" }} />
             </Stack.Protected>
 
@@ -111,6 +119,15 @@ function RootNavigator() {
       </View>
     </NavigationThemeProvider>
   );
+}
+
+/** Header title for `feature/[slug]`, or "Not Found" for an unknown slug. */
+function featureTitle(params: object | undefined): string {
+  const slug =
+    params && "slug" in params && typeof params.slug === "string"
+      ? params.slug
+      : undefined;
+  return (slug && getFeature(slug)?.title) || "Not Found";
 }
 
 const styles = StyleSheet.create({

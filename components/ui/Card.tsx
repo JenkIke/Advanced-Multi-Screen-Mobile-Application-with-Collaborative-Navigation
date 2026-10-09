@@ -1,8 +1,9 @@
-import type { PropsWithChildren } from "react";
+import type { ReactNode } from "react";
 import {
   Pressable,
   StyleSheet,
   View,
+  type PressableProps,
   type StyleProp,
   type ViewStyle,
 } from "react-native";
@@ -10,19 +11,17 @@ import {
 import { Radius, Spacing } from "@/constants/Layout";
 import { useAppTheme } from "@/context/ThemeContext";
 
-interface CardProps extends PropsWithChildren {
-  onPress?: () => void;
+/**
+ * Extra Pressable props (`href`, `role`...) are passed through so a
+ * pressable card can sit inside `<Link asChild>`, which supplies them.
+ */
+interface CardProps extends Omit<PressableProps, "style" | "children"> {
+  children?: ReactNode;
   style?: StyleProp<ViewStyle>;
-  accessibilityLabel?: string;
 }
 
 /** Rounded container used by insight tiles, strategy panels and list groups. */
-export function Card({
-  children,
-  onPress,
-  style,
-  accessibilityLabel,
-}: CardProps) {
+export function Card({ children, onPress, style, ...rest }: CardProps) {
   const { colors } = useAppTheme();
   const cardStyle = [styles.card, { backgroundColor: colors.card }, style];
 
@@ -32,9 +31,9 @@ export function Card({
 
   return (
     <Pressable
-      onPress={onPress}
       accessibilityRole="button"
-      accessibilityLabel={accessibilityLabel}
+      {...rest}
+      onPress={onPress}
       style={({ pressed }) => [cardStyle, pressed && styles.pressed]}
     >
       {children}

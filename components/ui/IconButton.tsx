@@ -1,13 +1,15 @@
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import { Pressable, StyleSheet } from "react-native";
+import { Pressable, StyleSheet, type PressableProps } from "react-native";
 
 import { useAppTheme } from "@/context/ThemeContext";
 import type { IconName } from "@/types";
 
-interface IconButtonProps {
+/**
+ * Extra Pressable props (`onPress`, `href`, `role`...) are passed through so
+ * the button can sit inside `<Link asChild>`, which supplies them.
+ */
+interface IconButtonProps extends Omit<PressableProps, "style" | "children"> {
   icon: IconName;
-  /** Optional so the button can sit inside `<Link asChild>`, which supplies it. */
-  onPress?: () => void;
   accessibilityLabel: string;
   size?: number;
   iconSize?: number;
@@ -16,19 +18,19 @@ interface IconButtonProps {
 /** Circular grey button (Food Log header actions, entry edit pencils). */
 export function IconButton({
   icon,
-  onPress,
   accessibilityLabel,
   size = 48,
   iconSize = 22,
+  ...rest
 }: IconButtonProps) {
   const { colors } = useAppTheme();
 
   return (
     <Pressable
-      onPress={onPress}
       accessibilityRole="button"
-      accessibilityLabel={accessibilityLabel}
       hitSlop={6}
+      {...rest}
+      accessibilityLabel={accessibilityLabel}
       style={({ pressed }) => [
         styles.button,
         {
