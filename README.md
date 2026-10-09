@@ -74,6 +74,14 @@ Root Stack (app/_layout.tsx)
 * **Animations:** the Shortcuts sheet slides up with a backdrop fade and supports drag-to-dismiss; the Dashboard bars and all progress bars animate when values change; the Consumed/Remaining toggle thumb springs between options; the centre **+** button scales when pressed.
 * **Mock authentication + profile:** sign-in screen with validation, a profile/account screen, and sign out through `Stack.Protected`.
 
-## Image placeholders
+## Attributions
 
-To follow the "no generated or downloaded images" rule, these spots use Expo icons or text where the real app uses images. Each is marked with an `IMAGE PLACEHOLDER` comment in the code:
+This project utilizes  AI tools to enhance code quality and documentation. 
+
+### AI Assistants
+
+* Anthropic Claude - Used  for:
+  * Automated code formatting and style standardization.
+  * Refactoring and code cleaning.
+  * Expanding inline code comments and generating comprehensive documentation strings.
+  * Formatting documentation like this README
