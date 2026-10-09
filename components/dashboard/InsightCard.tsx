@@ -1,0 +1,94 @@
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import { StyleSheet, View, type StyleProp, type ViewStyle } from "react-native";
+
+import { Sparkline } from "@/components/charts/Sparkline";
+import { AppText } from "@/components/ui/AppText";
+import { Card } from "@/components/ui/Card";
+import { ProgressBar } from "@/components/ui/ProgressBar";
+import { Spacing } from "@/constants/Layout";
+import { useAppTheme } from "@/context/ThemeContext";
+import type { Insight } from "@/types";
+
+interface InsightCardProps {
+  insight: Insight;
+  /** Optional so the card can sit inside `<Link asChild>`, which supplies it. */
+  onPress?: () => void;
+  style?: StyleProp<ViewStyle>;
+}
+
+/** Tile in the "Insights & Analytics" grid: title, mini chart, headline value. */
+export function InsightCard({ insight, onPress, style }: InsightCardProps) {
+  const { colors } = useAppTheme();
+
+  return (
+    <Card
+      onPress={onPress}
+      style={[styles.card, style]}
+      accessibilityLabel={`${insight.title} insight`}
+    >
+      <AppText
+        variant="title"
+        numberOfLines={1}
+        adjustsFontSizeToFit
+        style={styles.title}
+      >
+        {insight.title}
+      </AppText>
+      <AppText variant="bodyLarge" muted>
+        {insight.subtitle}
+      </AppText>
+
+      <View style={styles.chart}>
+        {insight.kind === "line" ? (
+          <Sparkline
+            data={insight.series}
+            color={insight.color}
+            showBand={insight.key === "expenditure"}
+          />
+        ) : (
+          <ProgressBar
+            progress={insight.series[0]?.value ?? 0}
+            color={insight.color}
+            height={26}
+          />
+        )}
+      </View>
+
+      <View style={[styles.footer, { borderTopColor: colors.border }]}>
+        <AppText variant="title" style={styles.value}>
+          {insight.value} <AppText variant="bodyLarge">{insight.unit}</AppText>
+        </AppText>
+        <MaterialCommunityIcons
+          name="chevron-right"
+          size={24}
+          color={colors.secondaryText}
+        />
+      </View>
+    </Card>
+  );
+}
+
+const styles = StyleSheet.create({
+  card: {
+    paddingHorizontal: Spacing.lg,
+    paddingVertical: Spacing.lg + 4,
+  },
+  title: {
+    fontSize: 20,
+  },
+  chart: {
+    height: 64,
+    justifyContent: "center",
+    marginVertical: Spacing.md,
+  },
+  footer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    borderTopWidth: StyleSheet.hairlineWidth,
+    paddingTop: Spacing.md,
+  },
+  value: {
+    fontSize: 24,
+  },
+});

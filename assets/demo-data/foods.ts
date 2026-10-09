@@ -1,0 +1,235 @@
+import type { Food } from "@/types";
+
+/**
+ * Mock food database. Macros are per serving.
+ *
+ * IMAGE PLACEHOLDER: MacroFactor shows a colourful illustration for every
+ * food. Each entry uses a tinted MaterialCommunityIcons glyph instead
+ * (see `FoodIcon`). Swap `icon` for an `ImageSourcePropType` if real
+ * artwork is added later.
+ */
+export const FOODS: Food[] = [
+  {
+    id: "yogurt-activia",
+    name: "Yogurt",
+    brand: "Activia",
+    icon: "cup",
+    iconColor: "#2BA3A0",
+    servingSize: 125,
+    servingUnit: "g",
+    perServing: { calories: 93.4, protein: 4, fat: 3.4, carbs: 16.4 },
+  },
+  {
+    id: "granola-almond-cashew",
+    name: "Almond Cashew Granola",
+    brand: "Western Family",
+    icon: "bowl-mix",
+    iconColor: "#F2B233",
+    servingSize: 30,
+    servingUnit: "g",
+    perServing: { calories: 120, protein: 3, fat: 2.4, carbs: 23 },
+  },
+  {
+    id: "apple",
+    name: "Apple, Fresh, With Skin",
+    icon: "food-apple",
+    iconColor: "#E53935",
+    servingSize: 1,
+    servingUnit: "small",
+    perServing: { calories: 77, protein: 0, fat: 0, carbs: 21 },
+  },
+  {
+    id: "cottage-cheese",
+    name: "Cottage Cheese",
+    brand: "No Name",
+    icon: "cheese",
+    iconColor: "#F5A742",
+    servingSize: 175,
+    servingUnit: "g",
+    perServing: { calories: 140, protein: 20, fat: 4.2, carbs: 8 },
+  },
+  {
+    id: "whey-isolate-choco",
+    name: "Pure Whey Isolate Choco Ferrerolicious",
+    brand: "Limitless Pharma",
+    icon: "bottle-tonic-plus",
+    iconColor: "#E8622C",
+    servingSize: 8,
+    servingUnit: "g",
+    perServing: { calories: 32, protein: 7, fat: 0, carbs: 0 },
+  },
+  {
+    id: "cinnamon",
+    name: "Cinnamon, Ground",
+    icon: "spoon-sugar",
+    iconColor: "#A0522D",
+    servingSize: 5,
+    servingUnit: "g",
+    perServing: { calories: 12.6, protein: 0, fat: 0, carbs: 4.1 },
+  },
+  {
+    id: "chicken-breast",
+    name: "Chicken Breast, Grilled",
+    icon: "food-drumstick",
+    iconColor: "#D9A066",
+    servingSize: 100,
+    servingUnit: "g",
+    perServing: { calories: 165, protein: 31, fat: 3.6, carbs: 0 },
+  },
+  {
+    id: "white-rice",
+    name: "Rice, White, Cooked",
+    icon: "rice",
+    iconColor: "#E8E3D3",
+    servingSize: 100,
+    servingUnit: "g",
+    perServing: { calories: 130, protein: 2.7, fat: 0.3, carbs: 28 },
+  },
+  {
+    id: "olive-oil",
+    name: "Olive Oil, Extra Virgin",
+    icon: "oil",
+    iconColor: "#B5B83A",
+    servingSize: 15,
+    servingUnit: "ml",
+    perServing: { calories: 120, protein: 0, fat: 14, carbs: 0 },
+  },
+  {
+    id: "broccoli",
+    name: "Broccoli, Steamed",
+    icon: "sprout",
+    iconColor: "#4CAF50",
+    servingSize: 100,
+    servingUnit: "g",
+    perServing: { calories: 35, protein: 2.4, fat: 0.4, carbs: 7 },
+  },
+  {
+    id: "salmon",
+    name: "Salmon, Atlantic, Baked",
+    icon: "fish",
+    iconColor: "#F08A6C",
+    servingSize: 100,
+    servingUnit: "g",
+    perServing: { calories: 206, protein: 22, fat: 12, carbs: 0 },
+  },
+  {
+    id: "sweet-potato",
+    name: "Sweet Potato, Baked",
+    icon: "food-variant",
+    iconColor: "#E07B39",
+    servingSize: 100,
+    servingUnit: "g",
+    perServing: { calories: 90, protein: 2, fat: 0.2, carbs: 21 },
+  },
+  {
+    id: "mixed-nuts",
+    name: "Mixed Nuts, Roasted",
+    icon: "peanut",
+    iconColor: "#C68B59",
+    servingSize: 30,
+    servingUnit: "g",
+    perServing: { calories: 180, protein: 5, fat: 16, carbs: 6 },
+  },
+  {
+    id: "dark-chocolate",
+    name: "Dark Chocolate 70%",
+    brand: "Lindt",
+    icon: "candy",
+    iconColor: "#7B4A2E",
+    servingSize: 10,
+    servingUnit: "g",
+    perServing: { calories: 60, protein: 0.8, fat: 4.3, carbs: 4.6 },
+  },
+  {
+    id: "rolled-oats",
+    name: "Rolled Oats",
+    brand: "Quaker",
+    icon: "bowl-mix",
+    iconColor: "#D8B98A",
+    servingSize: 40,
+    servingUnit: "g",
+    perServing: { calories: 150, protein: 5, fat: 3, carbs: 27 },
+  },
+  {
+    id: "banana",
+    name: "Banana, Raw",
+    icon: "food-variant",
+    iconColor: "#F7D44C",
+    servingSize: 1,
+    servingUnit: "medium",
+    perServing: { calories: 105, protein: 1.3, fat: 0.4, carbs: 27 },
+  },
+  {
+    id: "egg",
+    name: "Egg, Whole, Large",
+    icon: "egg",
+    iconColor: "#F3E5C8",
+    servingSize: 1,
+    servingUnit: "large",
+    perServing: { calories: 72, protein: 6.3, fat: 4.8, carbs: 0.4 },
+  },
+  {
+    id: "whole-wheat-bread",
+    name: "Whole Wheat Bread",
+    brand: "Dempster's",
+    icon: "bread-slice",
+    iconColor: "#C8894B",
+    servingSize: 1,
+    servingUnit: "slice",
+    perServing: { calories: 100, protein: 4, fat: 1.5, carbs: 18 },
+  },
+  {
+    id: "peanut-butter",
+    name: "Peanut Butter, Natural",
+    brand: "Kraft",
+    icon: "peanut",
+    iconColor: "#B07A3E",
+    servingSize: 16,
+    servingUnit: "g",
+    perServing: { calories: 95, protein: 4, fat: 8, carbs: 3 },
+  },
+  {
+    id: "lean-ground-beef",
+    name: "Lean Ground Beef, Cooked",
+    icon: "food-steak",
+    iconColor: "#B5463A",
+    servingSize: 100,
+    servingUnit: "g",
+    perServing: { calories: 215, protein: 26, fat: 12, carbs: 0 },
+  },
+  {
+    id: "spaghetti",
+    name: "Spaghetti, Cooked",
+    icon: "pasta",
+    iconColor: "#F2C46D",
+    servingSize: 100,
+    servingUnit: "g",
+    perServing: { calories: 158, protein: 5.8, fat: 0.9, carbs: 31 },
+  },
+  {
+    id: "milk-2",
+    name: "Milk, 2%",
+    brand: "Dairyland",
+    icon: "glass-mug",
+    iconColor: "#E3EEF7",
+    servingSize: 250,
+    servingUnit: "ml",
+    perServing: { calories: 130, protein: 9, fat: 5, carbs: 12 },
+  },
+];
+
+const FOODS_BY_ID = new Map(FOODS.map((food) => [food.id, food]));
+
+export function getFoodById(id: string): Food | undefined {
+  return FOODS_BY_ID.get(id);
+}
+
+export function searchFoods(query: string): Food[] {
+  const needle = query.trim().toLowerCase();
+  if (!needle) {
+    return FOODS;
+  }
+  return FOODS.filter((food) =>
+    `${food.name} ${food.brand ?? ""}`.toLowerCase().includes(needle),
+  );
+}
