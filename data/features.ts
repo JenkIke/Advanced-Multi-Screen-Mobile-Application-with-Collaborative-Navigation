@@ -248,7 +248,3 @@ export const FEATURES = {
 } satisfies Record<string, FeatureInfo>;
 
 export type FeatureSlug = keyof typeof FEATURES;
-
-export function getFeature(slug: string): FeatureInfo | undefined {
-  return (FEATURES as Record<string, FeatureInfo>)[slug];
-}

@@ -1,12 +1,15 @@
 import { ChartColors } from "@/constants/Colors";
-import type { Insight, InsightKey } from "@/types";
+import type { Insight } from "@/types";
+
+/** Current estimated daily energy expenditure; also drives the Dashboard Energy Balance page. */
+export const EXPENDITURE_KCAL = 3165;
 
 export const INSIGHTS: Insight[] = [
   {
     key: "expenditure",
     title: "Expenditure",
     subtitle: "Last 7 Days",
-    value: "3165",
+    value: String(EXPENDITURE_KCAL),
     unit: "kcal",
     color: ChartColors.expenditure,
     kind: "line",
@@ -55,7 +58,3 @@ export const INSIGHTS: Insight[] = [
       "How far your weight trend has moved from where your current goal started toward your goal weight of 170 lb.",
   },
 ];
-
-export function getInsight(key: string): Insight | undefined {
-  return INSIGHTS.find((insight) => insight.key === (key as InsightKey));
-}

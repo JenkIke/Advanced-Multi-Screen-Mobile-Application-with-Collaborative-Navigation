@@ -11,6 +11,9 @@ export const DAILY_TARGETS: MacroTotals = {
 /** "Today" in the mock data, matching the reference screenshots (Thursday). */
 export const TODAY = "2026-10-08";
 
+/** Time slot a food is logged into when none is chosen (first slot of an empty day). */
+export const DEFAULT_SLOT_TIME = "06:00";
+
 export const CURRENT_WEEK: WeekDay[] = [
   {
     date: "2026-10-05",

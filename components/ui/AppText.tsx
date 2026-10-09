@@ -7,10 +7,16 @@ export type TextVariant =
   | "wordmark"
   | "display"
   | "heading"
+  | "subheading"
+  | "titleLarge"
   | "title"
+  | "titleSmall"
   | "bodyLarge"
+  | "bodyMedium"
   | "body"
-  | "caption";
+  | "small"
+  | "caption"
+  | "micro";
 
 interface AppTextProps extends TextProps {
   variant?: TextVariant;
@@ -54,17 +60,39 @@ const styles = StyleSheet.create({
     fontSize: FontSize.heading,
     fontWeight: "700",
   },
+  /** Heading weight at title size, e.g. the Dashboard header page titles. */
+  subheading: {
+    fontSize: FontSize.title,
+    fontWeight: "700",
+  },
+  titleLarge: {
+    fontSize: FontSize.titleLarge,
+    fontWeight: "500",
+  },
   title: {
     fontSize: FontSize.title,
+    fontWeight: "500",
+  },
+  titleSmall: {
+    fontSize: FontSize.titleSmall,
     fontWeight: "500",
   },
   bodyLarge: {
     fontSize: FontSize.bodyLarge,
   },
+  bodyMedium: {
+    fontSize: FontSize.bodyMedium,
+  },
   body: {
     fontSize: FontSize.body,
   },
+  small: {
+    fontSize: FontSize.small,
+  },
   caption: {
     fontSize: FontSize.caption,
+  },
+  micro: {
+    fontSize: FontSize.micro,
   },
 });

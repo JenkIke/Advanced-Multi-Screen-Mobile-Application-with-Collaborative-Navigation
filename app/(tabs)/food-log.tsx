@@ -23,8 +23,13 @@ import { Spacing } from "@/constants/Layout";
 import { useFoodLog } from "@/context/FoodLogContext";
 import { useAppTheme } from "@/context/ThemeContext";
 import { useContentWidth } from "@/hooks/useContentWidth";
-import { getFoodById } from "@/assets/demo-data/foods";
-import { CURRENT_WEEK, DAILY_TARGETS, TODAY } from "@/assets/demo-data/foodLog";
+import { getFoodById } from "@/utils/lookups";
+import {
+  CURRENT_WEEK,
+  DAILY_TARGETS,
+  DEFAULT_SLOT_TIME,
+  TODAY,
+} from "@/data/foodLog";
 import type { FoodLogEntry, MacroTotals } from "@/types";
 import {
   entryAmountLabel,
@@ -74,7 +79,7 @@ export default function FoodLogScreen() {
   const lastTime = groups.at(-1)?.time;
   const slots: Slot[] = [
     ...groups,
-    { time: lastTime ? nextHour(lastTime) : "06:00", entries: [] },
+    { time: lastTime ? nextHour(lastTime) : DEFAULT_SLOT_TIME, entries: [] },
   ];
 
   const title =
@@ -168,30 +173,29 @@ export default function FoodLogScreen() {
             }
             onAddPress={() => openSearch(item.time)}
           >
-            {item.entries.length > 0 &&
-              item.entries.map((entry) => {
-                const food = getFoodById(entry.foodId);
-                if (!food) {
-                  return null;
-                }
-                return (
-                  <FoodEntryCard
-                    key={entry.id}
-                    food={food}
-                    macros={entryMacros(entry)}
-                    amountLabel={entryAmountLabel(entry)}
-                    onPress={() => openEntry(entry)}
-                    onEditPress={() => openEntry(entry)}
-                  />
-                );
-              })}
+            {item.entries.map((entry) => {
+              const food = getFoodById(entry.foodId);
+              if (!food) {
+                return null;
+              }
+              return (
+                <FoodEntryCard
+                  key={entry.id}
+                  food={food}
+                  macros={entryMacros(entry)}
+                  amountLabel={entryAmountLabel(entry)}
+                  onPress={() => openEntry(entry)}
+                  onEditPress={() => openEntry(entry)}
+                />
+              );
+            })}
           </TimeSlot>
         )}
       />
 
       <View style={[styles.searchArea, { backgroundColor: colors.background }]}>
         <FoodSearchBar
-          onPress={() => openSearch(lastTime ?? "06:00")}
+          onPress={() => openSearch(lastTime ?? DEFAULT_SLOT_TIME)}
           onBarcodePress={() => router.push("/feature/barcode")}
         />
       </View>

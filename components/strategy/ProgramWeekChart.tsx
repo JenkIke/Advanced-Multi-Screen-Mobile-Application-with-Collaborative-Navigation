@@ -48,11 +48,7 @@ export function ProgramWeekChart({
                 { backgroundColor: MacroColors.calories },
               ]}
             >
-              <AppText
-                variant="caption"
-                color={BLOCK_TEXT}
-                style={styles.calorieText}
-              >
+              <AppText variant="micro" color={BLOCK_TEXT}>
                 {targets.calories}
               </AppText>
             </View>
@@ -118,9 +114,6 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     borderRadius: Radius.pill,
     marginBottom: Spacing.xs,
-  },
-  calorieText: {
-    fontSize: 11,
   },
   block: {
     alignItems: "center",

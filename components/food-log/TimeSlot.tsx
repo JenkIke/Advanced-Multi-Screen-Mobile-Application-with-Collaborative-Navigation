@@ -59,7 +59,7 @@ export function TimeSlot({
                       color={colors.text}
                     />
                   ) : (
-                    <AppText variant="caption" style={styles.badgeText}>
+                    <AppText variant="micro" style={styles.badgeText}>
                       {MACRO_SUFFIX[key]}
                     </AppText>
                   )}
@@ -133,7 +133,6 @@ const styles = StyleSheet.create({
   },
   badgeText: {
     fontWeight: "700",
-    fontSize: 11,
   },
   entries: {
     flexDirection: "row",

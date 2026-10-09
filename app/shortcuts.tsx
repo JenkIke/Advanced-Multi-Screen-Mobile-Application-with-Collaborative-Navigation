@@ -17,7 +17,7 @@ import { AppText } from "@/components/ui/AppText";
 import { ListGroup, ListRow } from "@/components/ui/ListGroup";
 import { Radius, Spacing } from "@/constants/Layout";
 import { useAppTheme } from "@/context/ThemeContext";
-import { SHORTCUT_ROWS, SHORTCUT_TILES } from "@/assets/demo-data/shortcuts";
+import { SHORTCUT_ROWS, SHORTCUT_TILES } from "@/data/shortcuts";
 
 /** Drag distance past which releasing the grabber dismisses the sheet. */
 const DISMISS_DISTANCE = 120;
@@ -192,8 +192,8 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   sheet: {
-    borderTopLeftRadius: Radius.lg + 8,
-    borderTopRightRadius: Radius.lg + 8,
+    borderTopLeftRadius: Radius.xl,
+    borderTopRightRadius: Radius.xl,
     overflow: "hidden",
   },
   grabber: {

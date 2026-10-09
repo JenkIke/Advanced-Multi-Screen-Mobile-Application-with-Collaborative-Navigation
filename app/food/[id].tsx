@@ -13,8 +13,8 @@ import { MacroColors } from "@/constants/Colors";
 import { Spacing } from "@/constants/Layout";
 import { useFoodLog } from "@/context/FoodLogContext";
 import { useAppTheme } from "@/context/ThemeContext";
-import { DAILY_TARGETS, TODAY } from "@/assets/demo-data/foodLog";
-import { getFoodById } from "@/assets/demo-data/foods";
+import { DAILY_TARGETS, DEFAULT_SLOT_TIME, TODAY } from "@/data/foodLog";
+import { getFoodById } from "@/utils/lookups";
 import type { MacroKey } from "@/types";
 import { entryAmountLabel, entryMacros, progress } from "@/utils/nutrition";
 
@@ -48,7 +48,7 @@ export default function FoodDetailScreen() {
     id,
     entryId,
     date = TODAY,
-    time = "06:00",
+    time = DEFAULT_SLOT_TIME,
   } = useLocalSearchParams<FoodParams>();
 
   const food = getFoodById(id);

@@ -31,12 +31,7 @@ export function InsightCard({ insight, style, ...rest }: InsightCardProps) {
       {...rest}
       style={[styles.card, style]}
     >
-      <AppText
-        variant="title"
-        numberOfLines={1}
-        adjustsFontSizeToFit
-        style={styles.title}
-      >
+      <AppText variant="titleSmall" numberOfLines={1} adjustsFontSizeToFit>
         {insight.title}
       </AppText>
       <AppText variant="bodyLarge" muted>
@@ -60,7 +55,7 @@ export function InsightCard({ insight, style, ...rest }: InsightCardProps) {
       </View>
 
       <View style={[styles.footer, { borderTopColor: colors.border }]}>
-        <AppText variant="title" style={styles.value}>
+        <AppText variant="titleLarge">
           {insight.value} <AppText variant="bodyLarge">{insight.unit}</AppText>
         </AppText>
         <MaterialCommunityIcons
@@ -78,9 +73,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.lg,
     paddingVertical: Spacing.lg + 4,
   },
-  title: {
-    fontSize: 20,
-  },
   chart: {
     height: 64,
     justifyContent: "center",
@@ -92,8 +84,5 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     borderTopWidth: StyleSheet.hairlineWidth,
     paddingTop: Spacing.md,
-  },
-  value: {
-    fontSize: 24,
   },
 });

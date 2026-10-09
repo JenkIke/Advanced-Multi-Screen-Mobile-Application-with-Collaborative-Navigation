@@ -5,7 +5,7 @@ import {
   type PropsWithChildren,
 } from "react";
 
-import { FOOD_LOG } from "@/assets/demo-data/foodLog";
+import { FOOD_LOG } from "@/data/foodLog";
 import type { FoodLogEntry } from "@/types";
 
 type NewEntry = Omit<FoodLogEntry, "id">;
@@ -21,6 +21,12 @@ interface FoodLogContextValue {
 }
 
 const FoodLogContext = createContext<FoodLogContextValue | null>(null);
+
+/**
+ * Counter for new entry ids. Unlike `Date.now()` it can never repeat, even
+ * when two foods are logged within the same millisecond.
+ */
+let nextEntryNumber = 1;
 
 /**
  * In-memory food log seeded with the mock week. Logging, editing and
@@ -45,7 +51,7 @@ export function FoodLogProvider({ children }: PropsWithChildren) {
   }
 
   function addEntry(date: string, entry: NewEntry) {
-    const id = `${date}-${Date.now()}`;
+    const id = `${date}-new-${nextEntryNumber++}`;
     setLog((current) => ({
       ...current,
       [date]: [...(current[date] ?? []), { ...entry, id }],

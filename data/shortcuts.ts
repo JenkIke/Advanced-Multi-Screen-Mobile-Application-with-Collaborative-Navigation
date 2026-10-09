@@ -1,6 +1,6 @@
 import type { Href } from "expo-router";
 
-import type { FeatureSlug } from "@/assets/demo-data/features";
+import type { FeatureSlug } from "@/data/features";
 import type { IconName } from "@/types";
 
 export interface Shortcut {

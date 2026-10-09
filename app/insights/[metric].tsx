@@ -8,7 +8,7 @@ import { Card } from "@/components/ui/Card";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { Spacing } from "@/constants/Layout";
 import { useAppTheme } from "@/context/ThemeContext";
-import { getInsight } from "@/assets/demo-data/insights";
+import { getInsight } from "@/utils/lookups";
 
 /** Detail page for one Dashboard insight; the metric key is a route parameter. */
 export default function InsightDetailScreen() {
@@ -29,9 +29,12 @@ export default function InsightDetailScreen() {
 
   const first = insight.series[0]?.value ?? 0;
   const last = insight.series.at(-1)?.value ?? 0;
+  // Guard the division so an empty series shows 0 rather than NaN.
   const average =
-    insight.series.reduce((sum, point) => sum + point.value, 0) /
-    insight.series.length;
+    insight.series.length > 0
+      ? insight.series.reduce((sum, point) => sum + point.value, 0) /
+        insight.series.length
+      : 0;
   const change = last - first;
 
   return (

@@ -26,7 +26,7 @@ export function GoalHistoryCard({ goal }: GoalHistoryCardProps) {
         <AppText variant="body" muted numberOfLines={1} adjustsFontSizeToFit>
           {goal.range}
         </AppText>
-        <AppText variant="title" style={styles.weights}>
+        <AppText variant="titleSmall">
           {goal.startWeight.toFixed(1)} lb
           {!inProgress && (
             <>
@@ -64,9 +64,6 @@ const styles = StyleSheet.create({
     flex: 1,
     gap: 4,
     marginRight: Spacing.sm,
-  },
-  weights: {
-    fontSize: 21,
   },
   status: {
     flexDirection: "row",

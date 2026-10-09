@@ -24,8 +24,8 @@ import { Spacing } from "@/constants/Layout";
 import { useFoodLog } from "@/context/FoodLogContext";
 import { useAppTheme } from "@/context/ThemeContext";
 import { useContentWidth } from "@/hooks/useContentWidth";
-import { CURRENT_WEEK, DAILY_TARGETS, TODAY } from "@/assets/demo-data/foodLog";
-import { INSIGHTS } from "@/assets/demo-data/insights";
+import { CURRENT_WEEK, DAILY_TARGETS, TODAY } from "@/data/foodLog";
+import { EXPENDITURE_KCAL, INSIGHTS } from "@/data/insights";
 import { totalsForDates } from "@/utils/nutrition";
 
 const MODES = [
@@ -37,7 +37,6 @@ const HEADER_PAGE_IDS = [
   "weekly-averages",
   "energy-balance",
 ] as const;
-const EXPENDITURE_KCAL = 3165;
 
 export default function DashboardScreen() {
   const { colors } = useAppTheme();
@@ -137,7 +136,7 @@ interface HeaderPageProps {
 function HeaderPage({ title, width, children }: HeaderPageProps) {
   return (
     <View style={[styles.page, { width }]}>
-      <AppText variant="heading" style={styles.pageTitle}>
+      <AppText variant="subheading" style={styles.pageTitle}>
         {title}
       </AppText>
       {children}
@@ -155,7 +154,6 @@ const styles = StyleSheet.create({
     paddingBottom: Spacing.xl,
   },
   pageTitle: {
-    fontSize: 22,
     marginBottom: Spacing.lg,
   },
   toggle: {

@@ -41,11 +41,11 @@ export function FoodEntryCard({
       >
         <FoodIcon food={food} size={44} />
         <View style={styles.details}>
-          <AppText variant="body" numberOfLines={2} style={styles.title}>
+          <AppText variant="bodyMedium" numberOfLines={2}>
             {title}
           </AppText>
           {/* One Text with a nested icon so the line wraps as a single run. */}
-          <AppText variant="body" style={styles.macroText}>
+          <AppText variant="small">
             {Math.round(macros.calories)}
             <MaterialCommunityIcons name="fire" size={14} color={colors.text} />
             {`  ${Math.round(macros.protein)}P  ${Math.round(macros.fat)}F  ${Math.round(macros.carbs)}C  •  ${amountLabel}`}
@@ -83,11 +83,5 @@ const styles = StyleSheet.create({
   details: {
     flex: 1,
     gap: 2,
-  },
-  title: {
-    fontSize: 17,
-  },
-  macroText: {
-    fontSize: 15,
   },
 });

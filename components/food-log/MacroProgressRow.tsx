@@ -37,12 +37,7 @@ export function MacroProgressRow({ consumed, targets }: MacroProgressRowProps) {
                 {MACRO_SUFFIX[key]}
               </AppText>
             )}
-            <AppText
-              variant="body"
-              numberOfLines={1}
-              adjustsFontSizeToFit
-              style={styles.value}
-            >
+            <AppText variant="caption" numberOfLines={1} adjustsFontSizeToFit>
               {Math.round(consumed[key])} / {targets[key]}
             </AppText>
           </View>
@@ -69,9 +64,6 @@ const styles = StyleSheet.create({
   // The calorie figure has the most digits, so give it a little more room.
   caloriesItem: {
     flex: 1.3,
-  },
-  value: {
-    fontSize: 13,
   },
   label: {
     flexDirection: "row",

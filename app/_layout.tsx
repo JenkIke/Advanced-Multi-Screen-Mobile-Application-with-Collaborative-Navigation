@@ -9,7 +9,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, useWindowDimensions, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
-import { getFeature } from "@/assets/demo-data/features";
+import { getFeature } from "@/utils/lookups";
 import { AuthProvider, useAuth } from "@/context/AuthContext";
 import { FoodLogProvider } from "@/context/FoodLogContext";
 import { ThemeProvider, useAppTheme } from "@/context/ThemeContext";

@@ -2,7 +2,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { useLocalSearchParams } from "expo-router";
 import { ScrollView, StyleSheet, View } from "react-native";
 
-import { getFeature } from "@/assets/demo-data/features";
+import { getFeature } from "@/utils/lookups";
 import { AppText } from "@/components/ui/AppText";
 import { ListGroup, ListRow } from "@/components/ui/ListGroup";
 import { Screen } from "@/components/ui/Screen";

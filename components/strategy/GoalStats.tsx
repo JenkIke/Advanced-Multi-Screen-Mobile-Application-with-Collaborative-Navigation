@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   value: {
-    fontSize: 32,
     fontWeight: "500",
   },
 });

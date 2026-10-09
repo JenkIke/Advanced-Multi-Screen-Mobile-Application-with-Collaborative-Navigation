@@ -85,7 +85,6 @@ const styles = StyleSheet.create({
   },
   initials: {
     fontWeight: "900",
-    fontSize: 28,
   },
   text: {
     flex: 1,

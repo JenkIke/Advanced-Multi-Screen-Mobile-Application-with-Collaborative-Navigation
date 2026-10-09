@@ -5,7 +5,7 @@ import { InsightCard } from "@/components/dashboard/InsightCard";
 import { Screen } from "@/components/ui/Screen";
 import { Spacing } from "@/constants/Layout";
 import { useAppTheme } from "@/context/ThemeContext";
-import { INSIGHTS } from "@/assets/demo-data/insights";
+import { INSIGHTS } from "@/data/insights";
 
 /** "See All" from the Dashboard: every insight as a full-width card. */
 export default function InsightsScreen() {

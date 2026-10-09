@@ -13,9 +13,10 @@ import { AppText } from "@/components/ui/AppText";
 import { PillButton } from "@/components/ui/PillButton";
 import { Screen } from "@/components/ui/Screen";
 import { MacroColors } from "@/constants/Colors";
-import { Radius, Spacing } from "@/constants/Layout";
+import { FontSize, InputHeight, Radius, Spacing } from "@/constants/Layout";
 import { useAuth } from "@/context/AuthContext";
 import { useAppTheme } from "@/context/ThemeContext";
+import { DEMO_ACCOUNT } from "@/data/account";
 import type { IconName } from "@/types";
 
 /**
@@ -26,8 +27,8 @@ import type { IconName } from "@/types";
 export default function SignInScreen() {
   const { colors } = useAppTheme();
   const { signIn } = useAuth();
-  const [email, setEmail] = useState("isaac@macrofactor.demo");
-  const [password, setPassword] = useState("password");
+  const [email, setEmail] = useState<string>(DEMO_ACCOUNT.email);
+  const [password, setPassword] = useState<string>(DEMO_ACCOUNT.password);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -180,13 +181,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: Spacing.sm,
-    height: 54,
+    height: InputHeight.form,
     paddingHorizontal: Spacing.lg,
     borderRadius: Radius.md,
   },
   input: {
     flex: 1,
-    fontSize: 17,
+    fontSize: FontSize.bodyMedium,
   },
   button: {
     marginTop: Spacing.sm,

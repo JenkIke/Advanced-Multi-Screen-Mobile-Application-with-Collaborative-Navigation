@@ -54,7 +54,7 @@ export function MacroTabBar({
         style={styles.tab}
       >
         {options.tabBarIcon?.({ focused, color, size: 30 })}
-        <AppText variant="caption" color={color} style={styles.label}>
+        <AppText variant="caption" color={color}>
           {label}
         </AppText>
       </Pressable>
@@ -133,9 +133,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: 2,
-  },
-  label: {
-    fontSize: 12,
   },
   addButton: {
     width: 60,

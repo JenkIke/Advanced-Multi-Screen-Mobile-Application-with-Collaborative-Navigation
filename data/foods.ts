@@ -217,19 +217,3 @@ export const FOODS: Food[] = [
     perServing: { calories: 130, protein: 9, fat: 5, carbs: 12 },
   },
 ];
-
-const FOODS_BY_ID = new Map(FOODS.map((food) => [food.id, food]));
-
-export function getFoodById(id: string): Food | undefined {
-  return FOODS_BY_ID.get(id);
-}
-
-export function searchFoods(query: string): Food[] {
-  const needle = query.trim().toLowerCase();
-  if (!needle) {
-    return FOODS;
-  }
-  return FOODS.filter((food) =>
-    `${food.name} ${food.brand ?? ""}`.toLowerCase().includes(needle),
-  );
-}

@@ -173,7 +173,7 @@ function MacroSummary({ macro, consumed, target, mode }: MacroSummaryProps) {
   return (
     <View style={styles.summaryCell}>
       <View style={styles.summaryValueRow}>
-        <AppText variant="title" style={styles.summaryValue}>
+        <AppText variant="titleSmall">
           {value}
           {MACRO_SUFFIX[macro] ? ` ${MACRO_SUFFIX[macro]}` : ""}
         </AppText>
@@ -181,7 +181,7 @@ function MacroSummary({ macro, consumed, target, mode }: MacroSummaryProps) {
           <MaterialCommunityIcons name="fire" size={16} color={colors.text} />
         )}
       </View>
-      <AppText variant="body" muted style={styles.summaryTarget}>
+      <AppText variant="small" muted>
         {mode === "Consumed" ? "of" : "left of"} {target}
       </AppText>
     </View>
@@ -250,14 +250,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
-  summaryValue: {
-    fontSize: 19,
-  },
   dayLabel: {
-    fontSize: 16,
     marginTop: Spacing.xs,
-  },
-  summaryTarget: {
-    fontSize: 14,
   },
 });

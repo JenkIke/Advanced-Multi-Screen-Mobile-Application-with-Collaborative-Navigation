@@ -9,12 +9,8 @@ import { Card } from "@/components/ui/Card";
 import { Screen } from "@/components/ui/Screen";
 import { Spacing } from "@/constants/Layout";
 import { useAppTheme } from "@/context/ThemeContext";
-import { CURRENT_WEEK, DAILY_TARGETS } from "@/assets/demo-data/foodLog";
-import {
-  CURRENT_GOAL,
-  CURRENT_PROGRAM,
-  GOAL_HISTORY,
-} from "@/assets/demo-data/strategy";
+import { CURRENT_WEEK, DAILY_TARGETS } from "@/data/foodLog";
+import { CURRENT_GOAL, CURRENT_PROGRAM, GOAL_HISTORY } from "@/data/strategy";
 
 /** The coached program uses the same targets every day of the week. */
 const PROGRAM_TARGETS = Object.fromEntries(

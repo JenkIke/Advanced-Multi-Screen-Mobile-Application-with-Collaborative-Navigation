@@ -1,4 +1,4 @@
-import { getFoodById } from "@/assets/demo-data/foods";
+import { getFoodById } from "@/utils/lookups";
 import type { FoodLogEntry, MacroKey, MacroTotals } from "@/types";
 
 export const MACRO_KEYS: MacroKey[] = ["calories", "protein", "fat", "carbs"];

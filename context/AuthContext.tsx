@@ -5,6 +5,8 @@ import {
   type PropsWithChildren,
 } from "react";
 
+import { DEMO_ACCOUNT } from "@/data/account";
+
 export interface User {
   name: string;
   email: string;
@@ -32,7 +34,8 @@ function nameFromEmail(email: string): string {
 export function AuthProvider({ children }: PropsWithChildren) {
   const [user, setUser] = useState<User | null>(null);
 
-  const signIn = (email: string, password: string): string | null => {
+  /** Returns an error message for the form, or null once signed in. */
+  function signIn(email: string, password: string): string | null {
     const trimmed = email.trim();
     if (!/^\S+@\S+\.\S+$/.test(trimmed)) {
       return "Enter a valid email address.";
@@ -43,10 +46,10 @@ export function AuthProvider({ children }: PropsWithChildren) {
     setUser({
       name: nameFromEmail(trimmed),
       email: trimmed,
-      memberSince: "January 9, 2025",
+      memberSince: DEMO_ACCOUNT.memberSince,
     });
     return null;
-  };
+  }
 
   function signOut() {
     setUser(null);

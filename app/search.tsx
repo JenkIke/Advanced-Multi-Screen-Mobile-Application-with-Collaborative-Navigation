@@ -6,11 +6,11 @@ import { FlatList, Pressable, StyleSheet, TextInput, View } from "react-native";
 import { AppText } from "@/components/ui/AppText";
 import { Screen } from "@/components/ui/Screen";
 import { FoodIcon } from "@/components/ui/FoodIcon";
-import { Radius, Spacing } from "@/constants/Layout";
+import { FontSize, InputHeight, Radius, Spacing } from "@/constants/Layout";
 import { useFoodLog } from "@/context/FoodLogContext";
 import { useAppTheme } from "@/context/ThemeContext";
-import { CURRENT_WEEK, TODAY } from "@/assets/demo-data/foodLog";
-import { searchFoods } from "@/assets/demo-data/foods";
+import { CURRENT_WEEK, DEFAULT_SLOT_TIME, TODAY } from "@/data/foodLog";
+import { searchFoods } from "@/utils/lookups";
 import type { Food } from "@/types";
 
 // Route params stay a `type` alias: Expo Router's typed params need an index-signature-compatible type.
@@ -28,7 +28,7 @@ export default function SearchScreen() {
   const { getEntries } = useFoodLog();
   const {
     date = TODAY,
-    time = "06:00",
+    time = DEFAULT_SLOT_TIME,
     scope,
   } = useLocalSearchParams<SearchParams>();
   const [query, setQuery] = useState("");
@@ -137,7 +137,7 @@ function SearchResult({ food, onPress }: SearchResultProps) {
         pressed && { backgroundColor: colors.card },
       ]}
     >
-      <FoodIcon food={food} size={44} />
+      <FoodIcon food={food} size={RESULT_ICON_SIZE} />
       <View style={styles.resultText}>
         <AppText variant="bodyLarge" numberOfLines={1}>
           {food.name}
@@ -161,6 +161,8 @@ function SearchResult({ food, onPress }: SearchResultProps) {
   );
 }
 
+const RESULT_ICON_SIZE = 44;
+
 const styles = StyleSheet.create({
   root: {
     flex: 1,
@@ -173,11 +175,11 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.sm,
     paddingHorizontal: Spacing.lg,
     borderRadius: Radius.pill,
-    height: 50,
+    height: InputHeight.search,
   },
   input: {
     flex: 1,
-    fontSize: 17,
+    fontSize: FontSize.bodyMedium,
   },
   context: {
     paddingHorizontal: Spacing.xl,
@@ -188,7 +190,8 @@ const styles = StyleSheet.create({
   },
   separator: {
     height: StyleSheet.hairlineWidth,
-    marginLeft: 76,
+    // Starts under the result text, past the row padding, icon and gap.
+    marginLeft: Spacing.lg + RESULT_ICON_SIZE + Spacing.md,
   },
   result: {
     flexDirection: "row",
