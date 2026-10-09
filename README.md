@@ -93,14 +93,15 @@ This project utilizes  AI tools to enhance code quality and documentation.
 ### AI Assistants
 
 * Anthropic Claude - Used  for:
-  * Automated code formatting and style standardization.
+  * Code formatting and style standardization.
   * Refactoring and code cleaning.
   * Expanding inline code comments and generating comprehensive documentation strings.
   * Formatting documentation like this README
-  * Reviewing the project for navigation, component design, code quality and documentation improvements, then applying the selected fixes:
-    * **Navigation:** feature page titles are resolved from the `slug` param in the root layout, so the header no longer flashes empty. Components used inside `<Link asChild>` (`IconButton`, `PillButton`, `ListRow`, `ProfileHeader`, `Card`, `InsightCard`) now forward the props `Link` supplies (`href`, `role`, `onPress`), so they render as real links on web.
+  * Reviewing the project for navigation, component design, code quality and documentation improvements, to ensure meeting full marks on the Rubric,  as well as finding the following issues and bugs:
     * **Project structure:** mock data moved from `assets/demo-data/` to `data/`, with lookup functions (`getFoodById`, `searchFoods`, `getFeature`, `getInsight`) moved to `utils/lookups.ts`. Repeated values became named constants (`DEFAULT_SLOT_TIME`, `EXPENDITURE_KCAL`, `DEMO_ACCOUNT`).
-    * **Dependencies:** removed nine unused packages and added `expo-sqlite` to remember the theme choice; `app.json` now uses `"userInterfaceStyle": "automatic"`.
+    * **Dependencies:** found nine unused packages and suggested `expo-sqlite` to remember the theme choice; `app.json` now uses `"userInterfaceStyle": "automatic"`.
     * **Bug fixes:** new food log entries get collision-free ids, and the insight detail average no longer shows NaN for an empty series.
     * **Consistency:** font sizes now come from `AppText` variants rather than per-screen overrides, raw style numbers became tokens in `constants/Layout.ts`, and every screen has a top-of-file comment.
     * **README:** added the lint, typecheck and format commands and a note on what is (and is not) saved between launches.
+
+These changes and suggestions were reviewed and implemented by a human author, Isaac Jenkins
