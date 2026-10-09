@@ -17,6 +17,10 @@ const PROGRAM_TARGETS = Object.fromEntries(
   CURRENT_WEEK.map((day) => [day.date, DAILY_TARGETS]),
 );
 
+/**
+ * Strategy tab: the in-progress coached program and weight goal, each with
+ * action buttons that open `/feature/[slug]`, followed by Goal History.
+ */
 export default function StrategyScreen() {
   const { colors } = useAppTheme();
 

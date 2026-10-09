@@ -118,6 +118,7 @@ interface StatProps {
   value: string;
 }
 
+/** Small summary card (label over value) shown in pairs under the chart. */
 function Stat({ label, value }: StatProps) {
   return (
     <Card style={styles.stat}>

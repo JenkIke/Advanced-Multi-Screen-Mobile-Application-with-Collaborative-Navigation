@@ -38,6 +38,11 @@ const HEADER_PAGE_IDS = [
   "energy-balance",
 ] as const;
 
+/**
+ * Dashboard tab. A swipeable header (Weekly Nutrition, Weekly Averages,
+ * Energy Balance) computed live from the food log, then the Insights &
+ * Analytics grid, whose cards link to `/insights/[metric]`.
+ */
 export default function DashboardScreen() {
   const { colors } = useAppTheme();
   const width = useContentWidth();

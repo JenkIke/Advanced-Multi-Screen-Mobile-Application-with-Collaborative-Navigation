@@ -13,6 +13,18 @@ npm install
 npx expo start
 ```
 
+### Checks and formatting
+
+```bash
+npm run lint        # ESLint with the Expo config (npx expo lint)
+npm run typecheck   # TypeScript type check, no output files (tsc --noEmit)
+npm run format      # Prettier, rewrites files in place (prettier --write .)
+```
+
+### What is saved
+
+All app data is mock data held in memory. **Nothing you log, edit or delete is saved between launches**: closing the app resets the food log to the demo week and signs you out. The only setting that is remembered is the **light/dark theme** (stored with `expo-sqlite/kv-store` on iOS/Android and `localStorage` on web).
+
 
 Built on **Expo SDK 57**, React Native 0.86, and TypeScript.
 
@@ -70,7 +82,7 @@ Root Stack (app/_layout.tsx)
 
 ## Bonus features
 
-* **Light / dark theme:** a Dark Mode switch on the More tab and Account screen; every component reads colours from `ThemeProvider`. The app starts in dark mode, like MacroFactor.
+* **Light / dark theme:** a Dark Mode switch on the More tab and Account screen; every component reads colours from `ThemeProvider`. The app starts in dark mode, like MacroFactor, and remembers your choice across launches. The keyboard and system dialogs follow the in-app theme.
 * **Animations:** the Shortcuts sheet slides up with a backdrop fade and supports drag-to-dismiss; the Dashboard bars and all progress bars animate when values change; the Consumed/Remaining toggle thumb springs between options; the centre **+** button scales when pressed.
 * **Mock authentication + profile:** sign-in screen with validation, a profile/account screen, and sign out through `Stack.Protected`.
 
@@ -85,3 +97,10 @@ This project utilizes  AI tools to enhance code quality and documentation.
   * Refactoring and code cleaning.
   * Expanding inline code comments and generating comprehensive documentation strings.
   * Formatting documentation like this README
+  * Reviewing the project for navigation, component design, code quality and documentation improvements, then applying the selected fixes:
+    * **Navigation:** feature page titles are resolved from the `slug` param in the root layout, so the header no longer flashes empty. Components used inside `<Link asChild>` (`IconButton`, `PillButton`, `ListRow`, `ProfileHeader`, `Card`, `InsightCard`) now forward the props `Link` supplies (`href`, `role`, `onPress`), so they render as real links on web.
+    * **Project structure:** mock data moved from `assets/demo-data/` to `data/`, with lookup functions (`getFoodById`, `searchFoods`, `getFeature`, `getInsight`) moved to `utils/lookups.ts`. Repeated values became named constants (`DEFAULT_SLOT_TIME`, `EXPENDITURE_KCAL`, `DEMO_ACCOUNT`).
+    * **Dependencies:** removed nine unused packages and added `expo-sqlite` to remember the theme choice; `app.json` now uses `"userInterfaceStyle": "automatic"`.
+    * **Bug fixes:** new food log entries get collision-free ids, and the insight detail average no longer shows NaN for an empty series.
+    * **Consistency:** font sizes now come from `AppText` variants rather than per-screen overrides, raw style numbers became tokens in `constants/Layout.ts`, and every screen has a top-of-file comment.
+    * **README:** added the lint, typecheck and format commands and a note on what is (and is not) saved between launches.

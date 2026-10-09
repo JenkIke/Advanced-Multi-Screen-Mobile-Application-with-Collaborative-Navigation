@@ -55,6 +55,12 @@ function nextHour(time: string): string {
 /** The two swipeable header pages: day selector, then remaining macros. */
 const HEADER_PAGE_IDS = ["days", "remaining"] as const;
 
+/**
+ * Food Log tab. The header shows the selected day, a day selector and macro
+ * progress (swipe for what is left); below is a timeline of entries grouped
+ * by time. Tapping an entry opens `/food/[id]` to edit it; tapping a slot's
+ * "+" or the search bar opens `/search` for that date and time.
+ */
 export default function FoodLogScreen() {
   const router = useRouter();
   const { colors } = useAppTheme();

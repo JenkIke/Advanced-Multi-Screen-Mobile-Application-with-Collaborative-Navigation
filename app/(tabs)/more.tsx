@@ -11,6 +11,10 @@ import { Spacing } from "@/constants/Layout";
 import { useAuth } from "@/context/AuthContext";
 import { useAppTheme } from "@/context/ThemeContext";
 
+/**
+ * More tab: profile header (links to `/account`), settings lists whose rows
+ * open `/feature/[slug]`, the Dark Mode switch, and sign out.
+ */
 export default function MoreScreen() {
   const { colors, isDark, setIsDark } = useAppTheme();
   const { user, signOut } = useAuth();

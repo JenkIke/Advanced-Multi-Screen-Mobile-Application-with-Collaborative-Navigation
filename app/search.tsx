@@ -22,6 +22,11 @@ type SearchParams = {
   scope?: "history";
 };
 
+/**
+ * Food search, pushed from the Food Log or a shortcut. Filters the food
+ * database as you type; picking a result opens `/food/[id]` in add mode,
+ * passing on the `date` and `time` to log into.
+ */
 export default function SearchScreen() {
   const router = useRouter();
   const { colors } = useAppTheme();

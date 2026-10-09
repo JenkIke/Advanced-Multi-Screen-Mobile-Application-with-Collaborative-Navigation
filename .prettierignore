@@ -1,0 +1,6 @@
+node_modules
+.expo
+dist
+reference-screenshots
+package-lock.json
+*.md
